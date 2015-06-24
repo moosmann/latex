@@ -1,0 +1,501 @@
+% ********************************************************************
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% classicthesis-config.tex 
+%*********************************************************************
+
+% ********************************************************************
+% ********************************************************************
+% 1. Configure classicthesis for your needs here, e.g., 
+% remove "drafting" below 
+% in order to deactivate the time-stamp on the pages
+% ****************************************************************************
+\PassOptionsToPackage{eulerchapternumbers,listings,
+  %drafting,%
+  pdfspacing,%floatperchapter,%linedheaders,%
+  subfig,beramono,eulermath,parts,subfig}{classicthesis}
+% ********************************************************************
+% Available options for classicthesis.sty:
+% drafting  parts nochapters linedheaders
+% eulerchapternumbers beramono eulermath pdfspacing minionprospacing
+% tocaligned dottedtoc manychapters listings floatperchapter subfig
+% ********************************************************************
+
+% ********************************************************************
+% Triggers for this config
+% ******************************************************************** 
+\usepackage{ifthen}
+\newboolean{enable-backrefs} % enable backrefs in the bibliography
+\setboolean{enable-backrefs}{false} % true false
+% ****************************************************************************
+
+% ****************************************************************************
+% ****************************************************************************
+% 2. Personal data and user ad-hoc commands
+% ****************************************************************************
+\newcommand{\myTitleGerman}{Nichtlinearer Zugang f{\"u}r das inverse Problem der Phasenr{\"u}ckgewinnung aus Einzelmessungen der R{\"o}ntgenintensit{\"a}ten bei nur einem Propagationsabstand\xspace}
+\newcommand{\myTitle}{Nonlinear approaches to the inverse problem
+  of phase retrieval from single-measurement X-ray intensity data\xspace}
+\newcommand{\myDegree}{Dipl.-Phys.\xspace}
+\newcommand{\myName}{Julian Philipp Moosmann\xspace}
+\newcommand{\myProf}{Prof. Dr. Tilo Baumbach\xspace}
+\newcommand{\mySupervisor}{Dr. habil. Ralf Hofmann (Privatdozent)\xspace}
+\newcommand{\myFaculty}{Physik\xspace}
+\newcommand{\myDepartment}{Laboratorium für Applikationen der
+  Synchrotronstrahlung (LAS)/ Institut für Photonenforschung und
+  Synchrotronstrahlung (IPS)\xspace} 
+\newcommand{\myUni}{Karlsruher Institut für Technologie (KIT)\xspace}
+\newcommand{\myLocation}{Karlsruhe\xspace}
+\newcommand{\myTime}{09.01.2015\xspace}
+\newcommand{\myVersion}{version 0.1\xspace}
+%\newcommand{\myOtherProf}{Prof. Dr. Yankeedoodle\xspace}
+
+% ********************************************************************
+% Setup, finetuning, and useful commands
+% ********************************************************************
+\newcounter{dummy} % necessary for correct hyperlinks (to index, bib, etc.)
+\newlength{\abcd} % for ab..z string length calculation
+\providecommand{\mLyX}{L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
+% ********************************************************************
+
+% ********************************************************************
+% ********************************************************************
+% New and renewed command
+% ********************************************************************
+\newcommand{\ie}{i.\,e.}
+\newcommand{\Ie}{I.\,e.}
+\newcommand{\eg}{e.\,g.}
+\newcommand{\Eg}{E.\,g.} 
+% Use \boldsymbol instead of \mathbf to allow for bold greek letter.
+% The package bm is more carefull, but changes font of bodl letter.
+% Use \mathbold to use bodl fonts from eulermath
+%\renewcommand{\vec}[1]{\mathbf{#1}}
+%\renewcommand{\vec}{\boldsymbol}
+\renewcommand{\vec}{\mathbold}
+% Vectors
+\newcommand{\xt}{{\vec{x},t}}
+% 1d
+\newcommand{\kp}{k_\perp}
+\newcommand{\xip}{\xi_{\perp}}
+\newcommand{\xipm}{\abs{\xi_{\perp}}_m}
+\newcommand{\xin}{\xi_{\mathrm{noise}}}
+\newcommand{\xim}{\xi_{m}}
+\newcommand{\xic}{\xi_{\mathrm{c}}}
+\newcommand{\xib}{\xi_{\mathrm{b}}}
+\newcommand{\xir}{{\xi_{r}}}
+\newcommand{\xis}{{\xi_{s}}}
+\newcommand{\xix}{{\xi_{x}}}
+\newcommand{\xiy}{{\xi_{y}}}
+\newcommand{\xiz}{{\xi_{z}}}
+% Vectors: 2D
+\newcommand{\np}{\nabla_\perp}
+\newcommand{\inp}{\nabla_\perp^{-2}}
+\newcommand{\npa}{\nabla_{\perp,\alpha}}
+\newcommand{\vecdp}{\vec{d}_\perp}
+\newcommand{\veckp}{\vec{k}_\perp}
+\newcommand{\vecqp}{\vec{q}_\perp}
+\newcommand{\vecrp}{\vec{r}_\perp}
+\newcommand{\vecxp}{\vec{x}_\perp}
+\newcommand{\vecsp}{\vec{s}_\perp}
+\newcommand{\vecxip}{\vec{\xi}_\perp}
+% Vectors: 3D
+\newcommand{\vecd}{\vec{d}}
+\newcommand{\vecj}{\vec{j}}
+\newcommand{\veck}{\vec{k}}
+\newcommand{\vecn}{\vec{n}}
+\newcommand{\vecp}{\vec{p}}
+\newcommand{\vecq}{\vec{q}}
+\newcommand{\vecr}{\vec{r}}
+\newcommand{\vecs}{\vec{s}}
+\newcommand{\vecv}{\vec{v}}
+\newcommand{\vecx}{\vec{x}}
+\newcommand{\x}{\vec{x}}
+\newcommand{\vecxi}{\vec{\xi}}
+\newcommand{\vecA}{\vec{A}}
+\newcommand{\vecB}{\vec{B}}
+\newcommand{\vecE}{\vec{E}}
+\newcommand{\vecD}{\vec{D}}
+\newcommand{\vecH}{\vec{H}}
+\newcommand{\vecM}{\vec{M}}
+\newcommand{\vecP}{\vec{P}}
+\newcommand{\vecS}{\vec{S}}
+% Other
+\newcommand{\BP}{\operatorname{BP}}
+\newcommand{\FBP}{\operatorname{FBP}}
+\newcommand{\adu}{\operatorname{ADU}}
+\newcommand{\dqe}{\operatorname{DQE}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\snr}[1]{\operatorname{SNR_{#1}}}
+\newcommand{\NA}{\mathrm{NA}}
+\newcommand{\Nrings}{N_{\circledcirc}}
+\newcommand{\Npix}{N_\mathrm{x}}
+\newcommand{\fwhm}{\operatorname{FWHM}}
+\newcommand{\tie}{\operatorname{\textcolor{blue}{TIE}}}
+\newcommand{\ctf}{\operatorname{\textcolor{red}{CTF}}}
+\newcommand{\qp}{\operatorname{\textcolor{green}{QP}}}
+\newcommand{\qpc}{\operatorname{\textcolor{black}{QP_\mathrm{con}}}}
+\newcommand{\conv}{\operatorname{\ast\ast}}
+\newcommand{\Prop}{\mathcal{P}}
+\newcommand{\order}{\mathcal{O}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\sigb}{\sigma_\mathrm{b}}
+\newcommand{\sigs}{\sigma_\mathrm{s}}
+\newcommand{\sig}[1]{\sigma_\mathrm{#1}}
+%\newcommand{\Seik}{\mathcal{S}}
+\newcommand{\e}[1]{\mathrm{e}^{#1}}
+\newcommand{\me}{m_e}
+\newcommand{\ed}{\rho_{e}}
+\newcommand{\Iin}{I^{\mathrm{(in)}}}
+\newcommand{\Ibin}{\bar{I}^{\mathrm{(in)}}}
+\newcommand{\Psin}{ \Psi^\mathrm{(in)} }
+\newcommand{\subn}[1]{_\mathrm{#1}}
+\newcommand{\submax}{_\mathrm{max}}
+\newcommand{\supin}{^\mathrm{(in)}}
+\newcommand{\supl}{^{(l)}}
+\newcommand{\env}{^\mathrm{(env)}}
+\newcommand{\ho}[1]{^{(#1)}}
+\newcommand{\hon}[1]{^{(\mathrm{#1})}}
+\newcommand{\vecjin}{\vec{j}^{\mathrm{(in)}}}
+\newcommand{\vecjsc}{\vec{j}^{\mathrm{(s)}}}
+\newcommand{\hook}{k_h}
+\newcommand{\dpo}{\delta\phi_0}
+\newcommand{\dpom}{\abs{\delta{\phi_0}}_{\mathrm{max}}}
+\newcommand{\delo}{\delta_\omega}
+\newcommand{\fov}{\mathrm{FOV}}
+\newcommand{\lmaxg}{{l_{\mathrm{max},g}}}
+\newcommand{\lmaxphi}{{l_{\mathrm{max},\phi}}}
+\newcommand{\nlo}[1]{\text{\small{NLO}}_{#1}}
+\newcommand{\lc}{l_\mathrm{c}}
+%\newcommand{\textsub}[1]{\ensuremath{_{\mbox{\footnotesize #1}}}}
+%\newcommand{\sqrd}{{\textsuperscript 2}}
+\newcommand{\rar}{\rightarrow}
+\newcommand{\lar}{\leftarrow}
+\newcommand{\ra}{\right\rangle}
+\newcommand{\la}{\left\langle}
+\newcommand{\ii}{\mathrm{i}}
+% modulus
+\newcommand{\abs}[1]{\left| #1 \right|} % for absolute value
+\newcommand{\absn}[1]{| #1 |} % for absolute value when | too big
+% average 
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle} % for average
+\newcommand{\avgn}[1]{\langle #1 \rangle} 
+% mean abs
+\newcommand{\avgabs}[1]{\left\langle\left|#1\right|\right\rangle} 
+\newcommand{\avgabsn}[1]{\langle|#1|\rangle} 
+\newcommand{\mabs}[1]{\overline{#1}} 
+% Fourier operator and symbol
+\newcommand{\F}{\operatorname{\mathcal{F}}}
+\newcommand{\iF}{\operatorname{\mathcal{F}^{-1}}}
+\newcommand{\FO}[1]{\operatorname{\mathcal{F}#1}}
+\newcommand{\ft}[1]{\widehat{#1}}
+%\newcommand{\ft}[1]{\widetilde{#1}}
+% angular averaged fft
+\newcommand{\aft}[1]{\widetilde{#1}} 
+% quasiparticle modification
+\newcommand{\qpft}[1]{\widehat{#1}^{\mathrm{(QP)}}}
+% derivatives and integral measures
+\newcommand{\pd}{\partial}
+\newcommand{\difd}{\mathrm{d}}
+\newcommand{\Int}{\int\limits}
+\newcommand{\intd}{\!\mathrm{d}}
+\newcommand{\Intd}[1]{\!\mathrm{d}#1\,}
+\newcommand{\Intdd}[1]{\!\mathrm{d^2}#1\,}
+\newcommand{\Intddd}[1]{\!\mathrm{d^3}#1\,}
+\newcommand{\const}{\mathrm{constant}}
+% Matrices
+\newcommand{\vv}[2]{\left(\begin{array}{c}#1\\#2\end{array}\right)}
+\newcommand{\vvv}[3]{\left(\begin{array}{c}#1\\#2\\#3\end{array}\right)}
+\newcommand{\mmmm}[4]{\left(\begin{array}{cc}#1&#2\\#3&#4\end{array}\right)}
+% Other
+\renewcommand{\hbar}{\hslash}
+\newcommand{\bra}[1]{\left\langle#1\right|}
+\newcommand{\ket}[1]{\left|#1\right\rangle}
+% parentheses, brackets, and braces
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\lrp}[1]{\left(#1\right)}
+\newcommand{\lrb}[1]{\left[#1\right]}
+\newcommand{\lrbr}[1]{\left\{#1\right\}}
+\newcommand{\lb}{\left[}
+\newcommand{\rb}{\right]}
+\newcommand{\expsb}[1]{\exp\left[#1\right]}
+\newcommand{\expb}[1]{\exp\left[#1\right]}
+\newcommand{\expp}[1]{\exp\left(#1\right)}
+
+\renewcommand{\floatpagefraction}{.7}
+%*******************************************************
+%********************************************************************
+% Hyphenation
+%*******************************************************
+% use \hyphenchar\font=\string"7F for words containing hyphen
+%\showhyphens{single-distance}
+\hyphenation{
+hard-X-ray 
+sin-gle-dis-tance 
+Rönt-gen 
+mo-no-chro-ma-tic
+par-ax-ial
+Helm-holtz
+Fou-ri-er
+two-body
+par-a-bolic
+par-a-me-trised
+Ang-ström-quel-le
+mi-cro-to-mo-graphy
+tech-nique
+tech-niques
+pe-ne-tra-tion
+flu-o-res-cence
+}
+%*******************************************************
+
+% ****************************************************************************
+% 3. Loading some handy packages
+% ****************************************************************************
+% ******************************************************************** 
+% Packages with options that might require adjustments
+% ******************************************************************** 
+\PassOptionsToPackage{utf8}{inputenc}	% latin9 (ISO-8859-9) = latin1+"Euro sign"
+ \usepackage{inputenc}				
+\PassOptionsToPackage{british,ngerman}{babel} %american
+ \usepackage{babel}		
+\PassOptionsToPackage{backend=biber,style=alphabetic,maxbibnames=9,maxnames=4}{biblatex}
+\usepackage{biblatex}			
+\bibliography{Bibliography}
+\usepackage[]{csquotes}
+% CREATES PROBLEM WHEN USING BIBLATEX
+%\PassOptionsToPackage{square,numbers}{natbib}
+% \usepackage{natbib}				
+\PassOptionsToPackage{fleqn}{amsmath}% math environments and more by the AMS 
+ \usepackage{amsmath}
+% ******************************************************************** 
+% General useful packages
+% ******************************************************************** 
+\PassOptionsToPackage{T1}{fontenc} % T2A for cyrillics
+ \usepackage{fontenc} % alle 256 Zeichen des europäischen Zeichenvorrates in
+ % T1-Kodierung.: Eingebunden wird die T1-Version der
+ % Computer-Modern-Schriftsippe mit \usepackage[T1]{fontenc}. Dadurch
+ % ist auch sichergestellt, dass in einem PDF Umlaute gefunden werden.
+ % Sie umfasst 256 Zeichen und unterstützt damit sowohl die west- als
+ % auch die osteuropäischen Sprachen mit lateinischem Alphabet.
+\usepackage{scrhack} % fix warnings when using KOMA with listings package     
+\usepackage{xspace} % to get the spacing after macros right  
+\usepackage{mparhack} % get marginpar right
+\usepackage{fixltx2e} % fixes some LaTeX stuff 
+%\renewcommand*{\acsfont}[1]{\textssc{#1}} % for MinionPro
+% ****************************************************************************
+
+% ****************************************************************************
+% 4. Setup floats: tables, (sub)figures, and captions
+% ****************************************************************************
+\usepackage{tabularx} % better tables
+	\setlength{\extrarowheight}{3pt} % increase table row height
+\newcommand{\tableheadline}[1]{\multicolumn{1}{c}{\spacedlowsmallcaps{#1}}}
+\newcommand{\myfloatalign}{\centering} % to be used with each float for alignment
+\usepackage{caption}
+\captionsetup{format=hang,font=small}
+\usepackage{subfig}
+\usepackage{url}
+% ****************************************************************************
+
+% ****************************************************************************
+% 5. Setup code listings
+% ****************************************************************************
+\usepackage{listings} 
+%\lstset{emph={trueIndex,root},emphstyle=\color{BlueViolet}}%\underbar} % for special keywords
+\lstset{language=[LaTeX]Tex,%C++,
+    keywordstyle=\color{RoyalBlue},%\bfseries,
+    basicstyle=\small\ttfamily,
+    %identifierstyle=\color{NavyBlue},
+    commentstyle=\color{Green}\ttfamily,
+    stringstyle=\rmfamily,
+    numbers=none,%left,%
+    numberstyle=\scriptsize,%\tiny
+    stepnumber=5,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frameround=ftff,
+    frame=single,
+    belowcaptionskip=.75\baselineskip
+    %frame=L
+} 
+% ****************************************************************************
+% ****************************************************************************
+% 5./6. Additional package and options. Put here because hyperref
+% package should be loaded as late as possible
+% ****************************************************************************
+%\usepackage{lmodern}
+\usepackage{amssymb}
+%\usepackage{bm} % bold math fonts !! changes appearance of bold fonts
+%\usepackage{latexsym} % symbols already provided by the amsfonts & amssymb 
+%\usepackage{mathabx} % more symbols: widehat, widecheck, etc
+%\usepackage{yhmath}
+\usepackage{mathtools}
+\usepackage{mathrsfs}% calligrafic fonts for physicists
+\usepackage{courier} % used for displaying code in text: \texttt{CODE}
+%\usepackage{gensymb}
+\usepackage{siunitx} %!! definitions(\celsius,...) in package gensymb collide with siunitx
+\usepackage{textcomp} % removes warning: LaTeX Font Warning: Font
+                      % shape `OMS/pplj/m/n' undefined 
+%\usepackage[on]{auto-pst-pdf} % use psfrag with pdflatex
+%\usepackage{psfrag} % replace labels in ps file
+% global command option for psfragfig
+\PassOptionsToPackage{process=auto}{pstool}%[process=none]%auto,all
+ \usepackage{pstool}
+\usepackage{classicthesis} 
+%\usepackage{epstopdf} % to use pdflatex with eps images
+%\graphicspath{ {./Images/} } % set image search path
+%\usepackage[clearempty]{titlesec}
+%\usepackage{todonotes}
+% multible bibliographies
+%\usepackage{multibib}
+%\newcites{pub}{Publications}
+%\usepackage{bibentry}
+%\nobibliography*%{Bibliography}
+\usepackage{tikz}
+% Speed up compiling by externalising  tikz figures, not working
+% \usepackage{pgfplots}
+% \usetikzlibrary{external}
+% \tikzexternalize[prefix=tikz/]
+%\tikzset{external/force remake}
+\usetikzlibrary{decorations.pathmorphing} % for decorations, wavy lines (snake)
+%\usetikzlibrary{decorations.markings}% to draw tangent lines
+%\usepackage{rotating} % for sidwaysfigure
+%\usepackage{wrapfig} % wrap text around figure
+\usepackage{caption}
+\captionsetup{format=plain} 
+\usepackage{chemfig}
+\usepackage{enumitem}
+%\usepackage{longtable}
+%\usepackage{rotating}
+\usepackage{tabu}
+% ****************************************************************************
+% 6. PDFLaTeX, hyperreferences and citation backreferences
+% ****************************************************************************
+% ********************************************************************
+% Using PDFLaTeX
+% ********************************************************************
+\PassOptionsToPackage{hyperfootnotes=false,pdfpagelabels}{hyperref}
+\usepackage{hyperref}  % backref linktocpage pagebackref
+% most package must be loaded before hyperref to work properly except,
+% e.g. amsref, cleveref
+\pdfcompresslevel=9
+\pdfadjustspacing=1 
+% should avoid warnings: found pdf version 1.5 but at most version 1.4 allowed
+\pdfminorversion=5
+\PassOptionsToPackage{pdftex}{graphicx}
+\usepackage{graphicx}
+
+% acronym must be loaded after hyperref that hyperlinks to acronyms
+% work properly. However it still doesn't. Otherwise use option
+% 'nohyperlinks': wenn hyperref geladen ist, wird die Verlinkung
+% unterbunden without compiling produces warning and the acronym links
+% jump to the first page
+\usepackage[printonlyused,nohyperlinks,
+%smaller
+]{acronym} % handling acronyms
+ \renewcommand{\bflabel}[1]{{#1}\hfill} % fix the list of acronyms
+
+% clever referencing. MUST BE LOADED AFTER HYPERREF
+\usepackage[english,capitalise]{cleveref}
+% Options: capitalise: for capital of all initial label, otherwise use
+% \Cref and \Crefrange; cleveref: for full label names
+
+% ********************************************************************
+% Setup the style of the backrefs from the bibliography
+% (translate the options to any language you use)
+% ********************************************************************
+\newcommand{\backrefnotcitedstring}{\relax}%(Not cited.)
+\newcommand{\backrefcitedsinglestring}[1]{(Cited on page~#1.)}
+\newcommand{\backrefcitedmultistring}[1]{(Cited on pages~#1.)}
+\ifthenelse{\boolean{enable-backrefs}}%
+{%
+		\PassOptionsToPackage{hyperpageref}{backref}
+		\usepackage{backref} % to be loaded after hyperref package 
+		   \renewcommand{\backreftwosep}{ and~} % separate 2 pages
+		   \renewcommand{\backreflastsep}{, and~} % separate last of longer list
+		   \renewcommand*{\backref}[1]{}  % disable standard
+		   \renewcommand*{\backrefalt}[4]{% detailed backref
+		      \ifcase #1 %
+		         \backrefnotcitedstring%
+		      \or%
+		         \backrefcitedsinglestring{#2}%
+		      \else%
+		         \backrefcitedmultistring{#2}%
+		      \fi}%
+}{\relax}    
+
+% ********************************************************************
+% Hyperreferences
+% ********************************************************************
+\hypersetup{%
+    %draft,	% = no hyperlinking at all (useful in b/w printouts)
+    colorlinks=true, 
+    linktocpage=true, 
+    pdfstartpage=3, 
+    pdfstartview=FitV,%
+    % uncomment the following line if you want to have black links (e.g., for printing)
+    %colorlinks=false, linktocpage=false, pdfborder={0 0 0}, pdfstartpage=3, pdfstartview=FitV,% 
+    breaklinks=true, 
+    pdfpagemode=UseNone, 
+    pageanchor=true, 
+    pdfpagemode=UseOutlines,%
+    plainpages=false, 
+    bookmarksnumbered, 
+    bookmarksopen=true, 
+    bookmarksopenlevel=1,%
+    hypertexnames=true, 
+    pdfhighlight=/O, 
+    % nesting=true,
+    % frenchlinks,%
+    urlcolor=webbrown, 
+    linkcolor=RoyalBlue, 
+    citecolor=webgreen, 
+    % pagecolor=RoyalBlue,%
+    %urlcolor=Black, linkcolor=Black, citecolor=Black, 
+    %pagecolor=Black,%
+    pdftitle={\myTitle},%
+    pdfauthor={\textcopyright\ \myName, \myUni, \myFaculty},%
+    pdfsubject={},%
+    pdfkeywords={},%
+    pdfcreator={pdfLaTeX},%
+    pdfproducer={LaTeX with hyperref and classicthesis}%
+}   
+
+% ********************************************************************
+% Setup autoreferences
+% ********************************************************************
+% There are some issues regarding autorefnames
+% http://www.ureader.de/msg/136221647.aspx
+% http://www.tex.ac.uk/cgi-bin/texfaq2html?label=latexwords you have
+% to redefine the makros for the language you use, e.g., american,
+% ngerman (as chosen when loading babel/AtBeginDocument)
+% ********************************************************************
+
+\makeatletter \@ifpackageloaded{babel}%
+{%
+  \addto\extrasamerican{%
+    \renewcommand*{\figureautorefname}{Figure}%
+    \renewcommand*{\tableautorefname}{Table}%
+    \renewcommand*{\partautorefname}{Part}%
+    \renewcommand*{\chapterautorefname}{Chapter}%
+    \renewcommand*{\sectionautorefname}{Section}%
+    \renewcommand*{\subsectionautorefname}{Section}%
+    \renewcommand*{\subsubsectionautorefname}{Section}%
+  }%
+  \addto\extrasngerman{%
+    \renewcommand*{\paragraphautorefname}{Absatz}%
+    \renewcommand*{\subparagraphautorefname}{Unterabsatz}%
+    \renewcommand*{\footnoteautorefname}{Fu\"snote}%
+    \renewcommand*{\FancyVerbLineautorefname}{Zeile}%
+    \renewcommand*{\theoremautorefname}{Theorem}%
+    \renewcommand*{\appendixautorefname}{Anhang}%
+    \renewcommand*{\equationautorefname}{Gleichung}%
+    \renewcommand*{\itemautorefname}{Punkt}%
+  }%
+
+  % Fix to getting autorefs for subfigures right
+  \providecommand{\subfigureautorefname}{\figureautorefname}%
+    }{\relax}
+\makeatother
+
