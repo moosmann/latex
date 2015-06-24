@@ -1,0 +1,16 @@
+\pdfoutput =0
+\let \origdocument \document 
+\let \EndPreamble \endinput 
+\def \document {\endgroup \endinput }
+\input {phdthesis}
+\usepackage [active,tightpage]{preview}
+\let \document \origdocument 
+\pagestyle {empty}
+\begin {document}
+\centering \null \vfill 
+\begin {preview}
+ \small \psfrag {Energy}[c][c]{Energy $E$ [\si {keV}]} \psfrag {delta}[c][r]{Real part decrement $\delta _\omega $} \psfrag {iron}{Iron}\psfrag {calcium}{Calcium} \psfrag {silicon}{Silicon}\psfrag {carbon}{Carbon} \psfrag {waterwater}{Water} 
+\includegraphics [width=.8\textwidth ,height=0.5\textwidth ] {fig-delta}
+\end {preview}
+\vfill \end {document}
+
