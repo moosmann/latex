@@ -1,0 +1,1021 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Talk for visit of Philipps Research in Hamburg about work at KIT
+% related to my dissertation. Approximately 15-20 min including
+% discussion. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{beamer}
+%\usetheme{Warsaw}
+%\usetheme{CambridgeUS}
+
+\setbeamertemplate{navigation symbols}{} % don't use navigation tools on slides
+%\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+%\usepackage[font=small,skip=1pt,labelformat=empty]{caption}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PACKAGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman,swedish,british]{babel}
+% from beamer example
+\usepackage[absolute,overlay]{textpos}
+\usepackage{extrabeamercmds}
+ \usepackage{%
+%  ae,
+%  times,
+%  arial,
+  lmodern,
+  charter,
+%  multibib,
+%  bibunits,
+%  graphicx,
+%  picins,
+}
+\usepackage{tikz}
+\usetikzlibrary{shapes.arrows}
+\usepackage{siunitx}
+\PassOptionsToPackage{fleqn}{amsmath}% math environments and more by the AMS 
+ \usepackage{amsmath}
+\usepackage{verbatim}
+%\usepackage{euler}
+\usepackage[euler-digits]{eulervm}
+\usefonttheme{professionalfonts}
+% Convert eps to pdf
+\PassOptionsToPackage{process=auto}{pstool}%[process=none]%auto,all
+ \usepackage{pstool}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% COMMANDS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% From phdthesis
+\newcommand{\ie}{i.\,e.}
+\newcommand{\Ie}{I.\,e.}
+\newcommand{\eg}{e.\,g.}
+\newcommand{\Eg}{E.\,g.} 
+% Use \boldsymbol instead of \mathbf to allow for bold greek letter.
+% The package bm is more carefull, but changes font of bodl letter.
+% Use \mathbold to use bodl fonts from eulermath
+%\renewcommand{\vec}[1]{\mathbf{#1}}
+%\renewcommand{\vec}{\boldsymbol}
+\renewcommand{\vec}{\mathbold}
+% Vectors
+\newcommand{\xt}{{\vec{x},t}}
+% 1d
+\newcommand{\kp}{k_\perp}
+\newcommand{\xip}{\xi_{\perp}}
+\newcommand{\xipm}{\abs{\xi_{\perp}}_m}
+\newcommand{\xin}{\xi_{\mathrm{noise}}}
+\newcommand{\xim}{\xi_{m}}
+\newcommand{\xic}{\xi_{\mathrm{c}}}
+\newcommand{\xib}{\xi_{\mathrm{b}}}
+\newcommand{\xir}{{\xi_{r}}}
+\newcommand{\xis}{{\xi_{s}}}
+\newcommand{\xix}{{\xi_{x}}}
+\newcommand{\xiy}{{\xi_{y}}}
+\newcommand{\xiz}{{\xi_{z}}}
+% Vectors: 2D
+\newcommand{\np}{\nabla_\perp}
+\newcommand{\inp}{\nabla_\perp^{-2}}
+\newcommand{\npa}{\nabla_{\perp,\alpha}}
+\newcommand{\vecdp}{\vec{d}_\perp}
+\newcommand{\veckp}{\vec{k}_\perp}
+\newcommand{\vecqp}{\vec{q}_\perp}
+\newcommand{\vecrp}{\vec{r}_\perp}
+\newcommand{\vecxp}{\vec{x}_\perp}
+\newcommand{\vecsp}{\vec{s}_\perp}
+\newcommand{\vecxip}{\vec{\xi}_\perp}
+% Vectors: 3D
+\newcommand{\vecd}{\vec{d}}
+\newcommand{\vecj}{\vec{j}}
+\newcommand{\veck}{\vec{k}}
+\newcommand{\vecn}{\vec{n}}
+\newcommand{\vecp}{\vec{p}}
+\newcommand{\vecq}{\vec{q}}
+\newcommand{\vecr}{\vec{r}}
+\newcommand{\vecs}{\vec{s}}
+\newcommand{\vecv}{\vec{v}}
+\newcommand{\vecx}{\vec{x}}
+\newcommand{\x}{\vec{x}}
+\newcommand{\vecxi}{\vec{\xi}}
+\newcommand{\vecA}{\vec{A}}
+\newcommand{\vecB}{\vec{B}}
+\newcommand{\vecE}{\vec{E}}
+\newcommand{\vecD}{\vec{D}}
+\newcommand{\vecH}{\vec{H}}
+\newcommand{\vecM}{\vec{M}}
+\newcommand{\vecP}{\vec{P}}
+\newcommand{\vecS}{\vec{S}}
+% Other
+\newcommand{\BP}{\operatorname{BP}}
+\newcommand{\FBP}{\operatorname{FBP}}
+\newcommand{\adu}{\operatorname{ADU}}
+\newcommand{\dqe}{\operatorname{DQE}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\snr}[1]{\operatorname{SNR_{#1}}}
+\newcommand{\NA}{\mathrm{NA}}
+\newcommand{\Nrings}{N_{\circledcirc}}
+\newcommand{\Npix}{N_\mathrm{x}}
+\newcommand{\fwhm}{\operatorname{FWHM}}
+\newcommand{\tie}{\operatorname{\textcolor{blue}{TIE}}}
+\newcommand{\ctf}{\operatorname{\textcolor{red}{CTF}}}
+\newcommand{\qp}{\operatorname{\textcolor{green}{QP}}}
+\newcommand{\qpc}{\operatorname{\textcolor{black}{QP_\mathrm{con}}}}
+\newcommand{\conv}{\operatorname{\ast\ast}}
+\newcommand{\Prop}{\mathcal{P}}
+\newcommand{\order}{\mathcal{O}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\sigb}{\sigma_\mathrm{b}}
+\newcommand{\sigs}{\sigma_\mathrm{s}}
+\newcommand{\sig}[1]{\sigma_\mathrm{#1}}
+%\newcommand{\Seik}{\mathcal{S}}
+\newcommand{\e}[1]{\mathrm{e}^{#1}}
+\newcommand{\me}{m_e}
+\newcommand{\ed}{\rho_{e}}
+\newcommand{\Iin}{I^{\mathrm{(in)}}}
+\newcommand{\Ibin}{\bar{I}^{\mathrm{(in)}}}
+\newcommand{\Psin}{ \Psi^\mathrm{(in)} }
+\newcommand{\subn}[1]{_\mathrm{#1}}
+\newcommand{\submax}{_\mathrm{max}}
+\newcommand{\supin}{^\mathrm{(in)}}
+\newcommand{\supl}{^{(l)}}
+\newcommand{\env}{^\mathrm{(env)}}
+\newcommand{\ho}[1]{^{(#1)}}
+\newcommand{\hon}[1]{^{(\mathrm{#1})}}
+\newcommand{\vecjin}{\vec{j}^{\mathrm{(in)}}}
+\newcommand{\vecjsc}{\vec{j}^{\mathrm{(s)}}}
+\newcommand{\hook}{k_h}
+\newcommand{\dpo}{\delta\phi_0}
+\newcommand{\dpom}{\abs{\delta{\phi_0}}_{\mathrm{max}}}
+\newcommand{\delo}{\delta_\omega}
+\newcommand{\fov}{\mathrm{FOV}}
+\newcommand{\lmaxg}{{l_{\mathrm{max},g}}}
+\newcommand{\lmaxphi}{{l_{\mathrm{max},\phi}}}
+\newcommand{\nlo}[1]{\text{\small{NLO}}_{#1}}
+\newcommand{\lc}{l_\mathrm{c}}
+%\newcommand{\textsub}[1]{\ensuremath{_{\mbox{\footnotesize #1}}}}
+%\newcommand{\sqrd}{{\textsuperscript 2}}
+\newcommand{\rar}{\rightarrow}
+\newcommand{\lar}{\leftarrow}
+\newcommand{\ra}{\right\rangle}
+\newcommand{\la}{\left\langle}
+\newcommand{\ii}{\mathrm{i}}
+% modulus
+\newcommand{\abs}[1]{\left| #1 \right|} % for absolute value
+\newcommand{\absn}[1]{| #1 |} % for absolute value when | too big
+% average 
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle} % for average
+\newcommand{\avgn}[1]{\langle #1 \rangle} 
+% mean abs
+\newcommand{\avgabs}[1]{\left\langle\left|#1\right|\right\rangle} 
+\newcommand{\avgabsn}[1]{\langle|#1|\rangle} 
+\newcommand{\mabs}[1]{\overline{#1}} 
+% Fourier operator and symbol
+%\newcommand{\F}{\operatorname{\mathcal{F}}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\iF}{\operatorname{\mathcal{F}^{-1}}}
+\newcommand{\FO}[1]{\operatorname{\mathcal{F}#1}}
+\newcommand{\ft}[1]{\widehat{#1}}
+%\newcommand{\ft}[1]{\widetilde{#1}}
+% angular averaged fft
+\newcommand{\aft}[1]{\widetilde{#1}} 
+% quasiparticle modification
+\newcommand{\qpft}[1]{\widehat{#1}^{\mathrm{(QP)}}}
+% derivatives and integral measures
+\newcommand{\pd}{\partial}
+\newcommand{\difd}{\mathrm{d}}
+\newcommand{\Int}{\int\limits}
+\newcommand{\intd}{\!\mathrm{d}}
+\newcommand{\Intd}[1]{\!\mathrm{d}#1\,}
+\newcommand{\Intdd}[1]{\!\mathrm{d^2}#1\,}
+\newcommand{\Intddd}[1]{\!\mathrm{d^3}#1\,}
+\newcommand{\const}{\mathrm{constant}}
+% Matrices
+\newcommand{\vv}[2]{\left(\begin{array}{c}#1\\#2\end{array}\right)}
+\newcommand{\vvv}[3]{\left(\begin{array}{c}#1\\#2\\#3\end{array}\right)}
+\newcommand{\mmmm}[4]{\left(\begin{array}{cc}#1&#2\\#3&#4\end{array}\right)}
+% Other
+\renewcommand{\hbar}{\hslash}
+\newcommand{\bra}[1]{\left\langle#1\right|}
+\newcommand{\ket}[1]{\left|#1\right\rangle}
+% parentheses, brackets, and braces
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\lrp}[1]{\left(#1\right)}
+\newcommand{\lrb}[1]{\left[#1\right]}
+\newcommand{\lrbr}[1]{\left\{#1\right\}}
+\newcommand{\lb}{\left[}
+\newcommand{\rb}{\right]}
+\newcommand{\expsb}[1]{\exp\left[#1\right]}
+\newcommand{\expb}[1]{\exp\left[#1\right]}
+\newcommand{\expp}[1]{\exp\left(#1\right)}
+%% BEAMER or FILE specific
+\tikzset{
+    myarrow/.style={
+        draw,
+        fill=black,
+        single arrow,
+        minimum height=3ex,
+        single arrow head extend=1ex
+    }
+}
+\newcommand{\arrowright}{%
+  \tikz [baseline=-0.5ex]{\node [myarrow,rotate=0] {};} }
+\newcommand{\sref}[1]{{\scriptsize [#1]}}
+\newcommand{\srefr}[1]{\begin{flushright}{\tiny [#1]}\end{flushright}}
+\newcommand{\flr}[1]{\begin{flushright}{#1}\end{flushright}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BEAMER CONFIG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\logoheight}{0.05\textwidth}
+
+\title[X-ray phase-contrast tomography]{In vivo imaging using \\X-ray
+  phase-contrast microtomography} 
+
+%\subtitle{Visit to Philips Hamburg} 
+
+\author{Julian Moosmann}
+
+%\institute{Laboratory for Applications of Synchrotron radiation (LAS)}
+
+\date{August 17, 2015, Philips Hamburg}
+
+\titlegraphic{\includegraphics[
+%width=\textwidth,
+height=.4\textheight
+]{figures/cover/Nature}}
+
+\addtobeamertemplate{title page}{\hfill 
+  \includegraphics[height=\logoheight]{figures/logo/kth} \hfill 
+  \includegraphics[height=\logoheight]{figures/logo/kit} \hfill 
+  \includegraphics[height=\logoheight]{figures/logo/anka} \hfill 
+  \includegraphics[height=\logoheight]{figures/logo/anl} \hfill 
+  \includegraphics[height=\logoheight]{figures/logo/esrf} \hfill 
+}{}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}[plain]{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+
+} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BEGIN DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\selectlanguage{british}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TITLE PAGE
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TABLE OF CONTENTS
+\frame{
+  \frametitle{Outline}
+  \tableofcontents
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction \& Motivation}
+\label{sec:intro}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame} 
+  \frametitle{Introduction}
+  \begin{columns}
+    \column{0.55\textwidth}
+    \begin{itemize}
+    \item Hard X-rays are strongly penetrating electromagnetic waves
+    \item Interaction of X-ray and matter described by refractive
+index
+    \begin{equation*}
+      n = 1 - \delta + \ii \beta
+    \end{equation*} 
+    {\small
+    $\beta$: absorption, destructive\\ 
+    $\delta$: soft-tissue sensitive
+    }
+  \item Use monochromatic coherent X-ray with energies
+s.t.
+    \begin{equation*} 
+%      \frac{\delta}{\beta} \gg 1
+      \delta / \beta \gg 1
+    \end{equation*}
+  \end{itemize}
+  \column{0.45\textwidth}
+  \small
+  % Interaction
+  \includegraphics[width=\textwidth]{figures/interaction}
+  \vfill
+  % delta over beta
+   \psfragfig[width=0.5\textwidth,height=0.4\textheight]
+    {figures/refractive-index/fig-ratio}
+    { %\footnotesize
+      \psfrag{Energy}[c][c]{\scriptsize Energy $E$ [\si{eV}]}
+      \psfrag{ratio}[c][r]{\scriptsize Ratio $\delta / \beta$}
+      \psfrag{iron}{\tiny Fe}
+      \psfrag{calcium}{\tiny Ca}
+      \psfrag{silicon}{\tiny Si}
+      \psfrag{carbon}{\tiny C}
+      \psfrag{waterwater}{\tiny H$_2$O}
+    }
+%  \includegraphics[width=\textwidth]{figures/beta_over_delta}
+  \end{columns}
+  \arrowright Imaging of weakly absorbing materials using phase-contrast 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Motivation}
+  \begin{itemize}
+  \item Biological specimen w/o cartilage, bone, \& blood vessels are
+    essentially pure-phase objects for $E>\SI{20}{keV}$
+  \item Imaging techniques to study the development of model organisms
+    are essential tools in Biology, Medicine, Toxicology, …
+    \item Examples of important vertebrate model organisms
+      \begin{tikzpicture}[]
+        \def\xx{0.33\textwidth}
+        \def\imh{0.22\textheight}
+        \small
+         \node[inner sep=1pt,above] at (-\xx,0){
+           \includegraphics[height=\imh]{figures/model-organisms/xenopus}};         
+         \node[inner sep=1pt,below] at (-\xx,0){Xenopus laevis};
+         \node[inner sep=1pt,above] at (0,0){
+           \includegraphics[height=\imh]{figures/model-organisms/zebrafish}};
+         \node[inner sep=1pt,below] at (0,0){zebrafish};
+         \node[inner sep=1pt,above] at (\xx,0){
+           \includegraphics[height=\imh]{figures/model-organisms/lamprey}};
+         \node[inner sep=1pt,below] at (\xx,0){lamprey};
+    \end{tikzpicture}
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Comparison: 4D imaging techniques}
+  \begin{columns}[T]
+    %% RIGHT
+    \column{0.6\textwidth}
+    \begin{itemize}
+    \item Optical microscopy
+      \begin{itemize}
+      \item Non-destructive: Surfaces / thin samples
+      \item Destructive: Sectioning
+      \end{itemize}
+    \end{itemize}
+      \vfill
+    \begin{itemize}
+    \item Fluorescence microscopy
+      \begin{itemize}
+      \item Expression of fluorescence marker
+      \item Photobleaching
+      \item Sparse information
+      \item Limited depth information: few cell layers
+      \end{itemize}
+    \end{itemize}
+      \vfill
+    \begin{itemize}
+    \item Magnetic Resonance Imaging
+      \begin{itemize}
+      \item Non-destructive 
+      \item Dense \& deep information
+      \item Limited spatial \& temporal resolution
+      \end{itemize}
+    \end{itemize}
+    %% LEFT
+    \column{0.4\textwidth}
+    \begin{tikzpicture}
+    \def\yy{0.295\textheight}
+    \def\imw{0.285\textheight}
+    \small
+    % top
+    \node[left] at (0,2*\yy){
+      \href{run:videos/comparison/xeno-optical-sectioning.avi?autostart&loop}{
+      \includegraphics[width=\imw]{videos/comparison/xeno-optical-sectioning.jpg}}
+    };         
+    \node[right,align=left] at (0,2*\yy){Xenopus:\\ optical,\\ sectioned};
+    % middle
+    \node[left] at (0,1*\yy){
+      \href{run:videos/comparison/zebra-light-sheet.avi?autostart&loop}{
+        \includegraphics[width=\imw]{videos/comparison/zebra-light-sheet.jpg}}
+    };         
+    \node[right,align=left] at (0,1*\yy)
+    {Zebrafish: \\light-sheet \\microscopy};
+    % bottom
+    \node[left] at (0,0*\yy){
+      \href{run:videos/comparison/xeno-mri.avi?autostart&loop}{
+        \includegraphics[width=\imw]{videos/comparison/xeno-mri.jpg}}
+    };         
+    \node[right,align=left] at (0,0*\yy)
+    {Xenopus: \\MRI};
+    \end{tikzpicture}
+  \end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Comparison: 4D imaging techniques}
+    \begin{itemize}
+    \item X-ray phase-contrast tomography
+      \begin{itemize}
+      \item Fast
+      \item Dense 3D information
+      \item Apt for optically opaque objects
+      \item Possible time lapse $\lesssim$ \SI{2}{h}
+      \end{itemize}    
+    \end{itemize}    
+    \begin{columns}[T]
+      \column{0.6\textwidth}
+    \href{run:videos/comparison/nature-movie_03.avi?autostart&loop}{
+      \includegraphics[width=\textwidth
+      ]{videos/comparison/nature-movie_03.jpg}} 
+    \column{0.4\textwidth}
+     %Time-lapse sequence of 
+    Xenopus gastrulation:
+    {\footnotesize 
+      2-BM@APS\\ 
+      energy $E=\SI{30}{keV}$,
+      object-detector dist. $z$=\SI{62}{cm}\\
+      pixel size $\Delta x$=\SI{1}{\micro\metre}\\
+      bandwidth $\Delta E/E$=\num{e-2}\\
+      exposure time/image $\Delta t$=\SI{15}{ms}\\
+      time lapse $\sim\SI{2}{h}$
+    }
+  \end{columns}
+  \srefr{Moosmann et al., Nature;
+    Moosmann et al., Nature Protocols;
+    Nawy, Nature Methods (research highlight)}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Digital study}
+  Using dense \& deep 3D information allows to digitally study
+  \begin{itemize}
+  \item Structural changes, gene expression, perturbation experiments:
+    signal transduction and functioning of gene regulatory networks
+  \item Cell and tissue dynamics: exchange of fluids and nutrients,
+    deeply buried transient structures, cell migratory behaviour, ...
+  \item Propulsion mechanisms for cell and tissue migration:
+    differential flow-field analysis (convergent extension, cell-cell
+    adhesion, cell-matrix interaction, ...)
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Experimental setup \& principles of 
+propagation-based phase contrast}
+\label{sec:setup-and-principles}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Experimental setup}
+      \includegraphics[width=1\textwidth]{figures/setup/setup.jpg}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Propagation-based phase contrast}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{itemize}
+    \item Simple setup: no additional optics, no scanning, no stepping
+      $\rightarrow$ stable, fast, efficient
+    \item Intensity contrast emerges via free-space propagation of
+      transmitted wave field
+    \end{itemize}
+    \column{0.5\textwidth}
+      \includegraphics[
+      width=\textwidth
+      ]{figures/setup/propagation-based-imaging.png}
+  \end{columns}
+  \vspace{0.5cm}
+  Sequence of intensity maps $I_z$: signal increases
+  \begin{tikzpicture}[]
+    \def\xx{0.25\textwidth};
+    \def\picheight{0.18\textwidth};
+    \small
+    % 5 cm    
+    \node[inner sep=1pt,above] at (0,0){
+      \includegraphics[height=\picheight]{figures/IntensitySequenceANKA/int0005mm.png}};         
+    \node[inner sep=1pt,below] at (0,0){$\SI{0.5}{cm}$};
+    % 18 cm    
+    \node[inner sep=1pt,above] at (\xx,0){
+      \includegraphics[height=\picheight]{figures/IntensitySequenceANKA/int0180mm.png}};         
+    \node[inner sep=1pt,below] at (\xx,0){$\SI{18}{cm}$};
+    % 58 cm    
+    \node[inner sep=1pt,above] at (2*\xx,0){
+      \includegraphics[height=\picheight]{figures/IntensitySequenceANKA/int0580mm.png}};         
+    \node[inner sep=1pt,below] at (2*\xx,0){$\SI{58}{cm}$};
+    % 108 cm    
+    \node[inner sep=1pt,above] at (3*\xx,0){
+      \includegraphics[height=\picheight]{figures/IntensitySequenceANKA/int1080mm.png}};         
+    \node[inner sep=1pt,below] at (3*\xx,0){$\SI{108}{cm}$};
+    \draw[very thick,->] (-0.5*\xx,-0.4) 
+    node[below right]{object-detector distance $z$} 
+    -- (3.5*\xx,-0.4);
+    \end{tikzpicture}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Phase retrieval}
+\label{sec:phase-retrieval}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Phase contrast}
+  \begin{itemize}
+  \item Rewrite Fresnel diffraction integral \sref{Guigay 1977}
+    \begin{equation*}
+    \F I_z(\vecxi) = 
+    \int \Intd{\vecx}\exp{(-\ii 2\pi\vecx\cdot\vecxi)} 
+    \Psi_0\left(\vecx-\tfrac{\lambda z}{2}\vecxi\right) 
+    \Psi^*_0\left(\vecx+\tfrac{\lambda z}{2}\vecxi\right)
+  \end{equation*}
+  \item Expand exponential of exit wave field
+    $\Psi_0=\sqrt{I_0}\expp{\ii\phi_0}$
+    %=\sqrt{I_0}(1+\ii\phi_0-\phi_0^2+\order(\phi_0^3))
+  \item Guigay up to $\order(\phi_0)$ (pure-phase object)
+    \begin{equation*}
+      \begin{split}
+        &\F g_z(\vecxi) =
+        2\sin(\pi\lambda z\vecxi^2)\F \phi_0(\vecxi) 
+        \quad \leftarrow \quad \mathrm{linear\;order}
+        \\ & -\cos(\pi\lambda z\vecxi^2)\int\Intd{\vecxi'}
+        \F\phi_0(\vecxi')\,\F\phi_0(\vecxi-\vecxi')
+        \\ & +\expp{\ii\pi\lambda z\vecxi^2}\int\Intd{\vecxi'}
+        \expp{-\ii 2\pi\lambda z\vecxi\cdot\vecxi'} 
+        \F\phi_0(\vecxi')\,\F\phi_0(\vecxi-\vecxi')
+%        \\ & +\order( ( \ft{\phi}_0 )^3 ) \;.
+      \end{split}
+    \end{equation*}
+  \end{itemize}
+  \flr{intensity contrast $g_z=I_z/I_0=1$; $\vecx,\vecxi \in \R^2$}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Phase retrieval}
+  Linear models
+  \vfill
+  \begin{itemize}
+  \item Contrast transfer function (CTF)
+    \begin{itemize}
+    \item Small relative phase variations:
+      $\abs{\phi_0(\vecx+\tfrac{\lambda z}{2}\vecxi)
+        -\phi_0(\vecx-\tfrac{\lambda z}{2}\vecxi)}\ll 1$
+    \item High resolution
+    \end{itemize}
+  \end{itemize}
+
+  \begin{equation*}
+    \F\phi_0(\vecxi) = \frac{\F g_z(\vecxi) }{2\sin(\pi\lambda z\vecxi^2)}
+  \end{equation*}
+  \srefr{Guigay 1977; Gureyev et al. 2006; Cloetens 1998}
+  \vfill
+  \begin{itemize}
+  \item Paganin phase retrieval
+    \begin{itemize}
+    \item Edge-enhancement regime: \\small propagation distance
+    \item Low-pass filter
+    \item Robust
+    \end{itemize}
+    \begin{equation*}
+      \F\phi_0(\vecxi) = \frac{\F g_z(\vecxi) }{2\pi\lambda z\vecxi^2}
+    \end{equation*}
+    \srefr{Teague 1982; Paganin \& Nugent 1998; Bronnikov 2003}
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Evolution of contrast transfer}
+  \begin{itemize}
+  \item Compute intensity contrast from input phase map (Lena test pattern)
+  \item Amplify phase variations by upscaling of input phase
+  \item Consider Fourier transformed intensity, \ie{} CTF, as a
+    function of distance
+  \end{itemize}
+  \begin{columns}
+    %% LEFT: Movie
+    \column{0.4\textwidth}
+    \begin{tikzpicture}
+      \def\imh{0.9\textwidth}
+      \small
+      \node[inner sep=1pt,above] at (0,0){
+        \href{run:videos/intensity/FT-intensity_vs_distance.avi?autostart&loop}{
+          \includegraphics[height=\imh]
+          {videos/intensity/FT-intensity_vs_distance.jpg}}
+      };         
+      \node[inner sep=1pt,below] at (0,0){$\abs{\F I_z}(\vecxi)$};
+    \end{tikzpicture}
+    %% RIGHT
+    \column{0.6\textwidth}
+  \begin{tikzpicture}
+    \def\xx{0.55\textwidth};
+    \def\imh{0.45\textwidth};
+    \small
+    % Image    
+    \node[inner sep=0pt] at (0,0){
+      \includegraphics[height=\imh]{figures/minimum/angint-abs-ft-int}};         
+    \node[inner sep=0pt,above,rotate=90] at (-\imh/2,0){$\int\Intd\theta \abs{\F I_z}$};
+    \node[inner sep=1pt,below] at (0,-\imh/2){$\abs{\vecxi}/\xi_{\mathrm{c}}$};
+    % Image    
+    \node[inner sep=0pt] at (\xx,0){
+      \includegraphics[height=\imh]{figures/minimum/minima-pos}};         
+    \node[inner sep=0pt,above,rotate=90] at (\xx-\imh/2,0){min. pos. $\abs{\vecxi}_{\mathrm{min}}/\xi_{\mathrm{c}}$};
+    \node[inner sep=1pt,below] at (\xx,-\imh/2){Upscaling $S$};
+    \end{tikzpicture}
+  \end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Phase retrieval: quasiparticle approach}
+  \begin{columns}[T]
+    \column{0.35\textwidth}
+    \begin{itemize}
+    \item Fourier space filter: crop regions around minima
+    \item Phase retrieval via CTF using filtered intensity
+    \end{itemize}
+
+    \column{0.65\textwidth}
+  \begin{tikzpicture}[]
+    \def\xx{0.55\textwidth};
+    \def\imh{0.37\textwidth};
+    \def\yy{1.3*\imh}
+    \small
+    % intensity
+    \node[inner sep=1pt,above] at (\xx,0){
+      \includegraphics[height=\imh]{figures/ctf-filtering/CTFfiltering_intensity}};         
+    \node[inner sep=1pt,below] at (\xx,0){$I_z$};
+    % FT intensity
+    \node[inner sep=1pt,above] at (2*\xx,0){
+      \includegraphics[height=\imh]{figures/ctf-filtering/CTFfiltering_intensityFTabs}};         
+    \node[inner sep=1pt,below] at (2*\xx,0){$\abs{\F I_z}$};
+    % binary filter
+    \node[inner sep=1pt,above] at (\xx,-\yy){
+      \includegraphics[height=\imh]{figures/ctf-filtering/CTFfiltering_binaryfilter}};         
+    \node[inner sep=1pt,below] at (\xx,-\yy){binary filter};
+    % FT intensity
+    \node[inner sep=1pt,above] at (2*\xx,-\yy){
+      \includegraphics[height=\imh]{figures/ctf-filtering/CTFfiltering_intensityFTabsBinFilt}};         
+    \node[inner sep=1pt,below] at (2*\xx,-\yy){filtered $\abs{\F I_z}$};
+    \end{tikzpicture}
+    \begin{flushright}
+      {\scriptsize Data: TopoTomo@ANKA}
+    \end{flushright}
+  \end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Tomography: Paganin vs CTF vs QP} 
+
+  Xenopus, {\small4-cell stage, ID19@ESRF, $E=\SI{20}{keV}$, $\Delta
+    E/E=\num{e-4}$, $z=$\SI{1}{m}, $\Delta
+    x=\SI{0.75}{\micro\metre}$}
+  
+\begin{tikzpicture}[]
+    \def\imh{0.28\textwidth}
+    \small
+    \node[inner sep=1pt,above] at (0,0){
+      \includegraphics[height=\imh]{figures/paganin-ctf-qp/rend-pag-qp}};         
+    \node[inner sep=1pt,below] at (-0.9*\imh,0){Rendering};
+    \node[inner sep=1pt,below] at (0.1*\imh,0){Paganin};
+    \node[inner sep=1pt,below] at (\imh,0){Quasiparticle};
+    \end{tikzpicture}
+
+  \begin{tikzpicture}[]
+    \def\imh{0.3\textwidth}
+    \small
+    \node[inner sep=1pt,above] at (0,0){
+      \includegraphics[height=\imh]{figures/paganin-ctf-qp/pag-ctf-qp}};         
+    \node[inner sep=1pt,below] at (-\imh,0){Paganin};
+    \node[inner sep=1pt,below] at (0,0){CTF};
+    \node[inner sep=1pt,below] at (\imh,0){Quasiparticle};
+    \end{tikzpicture}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{In vivo imaging}
+\label{sec:in-vivo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{In vivo imaging: Considerations}
+  \begin{itemize}
+
+  \item Motion blurring due to cell movement: $\sim \SI{4}{\micro\metre}$
+    \begin{itemize}
+    \item Acquisition time for tomogram at  resolution: $\lesssim \SI{30}{s}$
+    \item Required flux density: $> \SI{e12}{photons/s/mm^2}$
+    \end{itemize}
+
+  \item Dose effects: heat load, double-strand breaking, free radicals
+    induced by radiolysis of water
+
+  \item Setup optimisation
+    \begin{itemize}
+    \item Energy: dose vs photon flux vs phase contrast vs detection efficiency
+    \item Exposure time: dose vs signal-to-noise vs motion blurring
+    \item Object-detector distance: signal-to-noise vs blurring
+      (finite source size, coherence, nonlinear propagation effects)
+    \item Tomography: number of projection, fast shutter influencing
+      dose, resolution, rotation blurring, ...
+    \end{itemize}
+
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{4D in vivo tomography} 
+  \begin{columns}
+    \column{0.45\textwidth}
+    \vfill
+    Xenopus gastrulation:
+    {\small 2-BM@APS, time lapse: \SI{2}{h}, time
+    between tomograms: \SI{10}{min}, $\Delta x$=\SI{1}{\micro\metre},
+    $E$=\SI{30}{keV}, $\Delta E/E$=\num{e-2}}
+    \vfill
+  \begin{tikzpicture}[]
+    \def\xx{0.55\textwidth};
+    \def\yy{0.61\textwidth};
+    \def\imh{0.49\textwidth};
+    \small
+        % raw proj
+         \node[inner sep=1pt,above] at (\xx,0){
+           \includegraphics[height=\imh]{figures/xeno-time-lapse/proj-raw}};         
+         \node[inner sep=1pt,below] at (\xx,0){raw projection};
+         % reco int
+         \node[inner sep=1pt,above] at (0,-\yy){
+           \includegraphics[height=\imh]{figures/xeno-time-lapse/reco-int}};         
+         \node[inner sep=1pt,below] at (0,-\yy){intensity};
+         % reco int
+         \node[inner sep=1pt,above] at (\xx,-\yy){
+           \includegraphics[height=\imh]{figures/xeno-time-lapse/reco-phase}};         
+         \node[inner sep=1pt,below] at (\xx,-\yy){phase};
+         \node[inner sep=11pt,below] at (\xx/2,-\yy){tomographic reconstruction};
+    \end{tikzpicture}
+
+    \column{0.55\textwidth}
+    \begin{tikzpicture}
+      % Animated rendering
+      \node[inner sep=1pt,above] at (0,0){
+        \href{run:videos/xeno-time-lapse/Nature_TomoSlicing.avi?autostart&loop}{
+          \includegraphics[width=\textwidth
+          ]{videos/xeno-time-lapse/Nature_TomoSlicing.jpg}}};         
+      \node[inner sep=1pt,below] at (0,0){Slicing through rendered volume};
+      % time-lapse sequence
+      \def\yy{0.45\textheight}
+      \node[inner sep=1pt,above] at (0,-\yy){
+        \href{run:videos/xeno-time-lapse/Nature_TimeLapseSlice.avi?autostart&loop}{
+          \includegraphics[width=\textwidth
+          ]{videos/xeno-time-lapse/Nature_TimeLapseSlice.jpg}}};         
+      \node[inner sep=1pt,below] at (0,-\yy){Time-lapse of reconstructed central slice};
+  \end{tikzpicture}
+  \end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \def\xx{0.5\textwidth}
+    \def\imh{0.35\textwidth}
+    \def\imw{0.8\textwidth}
+  \frametitle{New observation: transient structure}
+  \begin{itemize}
+  \item Confrontation of head \& ventral mesendoderm: formation of a
+    transient ridge
+    \item Not observable in fixed embryos or implants
+  \end{itemize}
+  \vfill
+  \begin{tikzpicture}[]
+    \small
+    % im sequence
+    \node[inner sep=1pt,above] at (0,0){
+      \includegraphics[width=\imw]{figures/transient-ridge/trans-struct-sequ}};         
+    \node[inner sep=1pt,below] at (0,0){Time lapse of reconstructed slice};
+  \end{tikzpicture}
+  \vfill
+  \begin{tikzpicture}
+    \small
+    % embryo cut
+    \node[inner sep=1pt,above] at (0,0){
+      \includegraphics[height=\imh]{figures/transient-ridge/trans-struct-embryo-cut}};
+    \node[inner sep=1pt,below,align=center] at (0,0){Moving contour of \\leading-edge mesendoderm};
+    % segmentation
+    \node[inner sep=1pt,above] at (\xx,0){
+      \href{run:videos/transient-ridge/trans-struct-segm.avi?autostart&loop}{
+        \includegraphics[height=\imh]{videos/transient-ridge/trans-struct-segm.jpg}}};
+    \node[inner sep=1pt,below] at (\xx,0){Segmented structures};
+  \end{tikzpicture}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Data analysis}
+  \begin{columns}
+    %% RIGHT
+    \column{0.5\textwidth}
+    \begin{itemize}
+    \item Visual inspection
+    \end{itemize}
+    \begin{tikzpicture}
+      \def\imw{1.1\textwidth}
+      \node[inner sep=1pt,above] at (0,0){
+        \includegraphics[width=\imw]{figures/analysis-overview/arch-form}};
+      \node[inner sep=1pt,below] at (0,0){
+        \includegraphics[width=\imw]{figures/analysis-overview/trans-ridge}};
+    \end{tikzpicture}
+    \begin{itemize}
+    \item Segmentation
+    \end{itemize}
+      \begin{tikzpicture}
+        \def\imh{0.3\textheight}
+        \node[inner sep=1pt,left] at (0,0){
+          \includegraphics[height=\imh]{figures/analysis-overview/seg-cav}};
+        \node[inner sep=1pt,right] at (0,0){
+          \includegraphics[height=\imh]{figures/analysis-overview/seg-neurula}};
+      \end{tikzpicture}
+    %% MIDDLE
+    \column{0.25\textwidth}
+    % top
+        \vfill
+    \begin{itemize}
+    \item Optical flow: overall dynamics
+    \end{itemize}        
+    \vfill
+    \begin{itemize}
+    \item Differential flow: collective vs individual movement
+    \end{itemize}
+    \vfill
+    \begin{itemize}
+    \item Integrated flow:\\ cell tracking
+    \end{itemize}        
+    %% RIGHT
+    \column{0.25\textwidth}
+    \def\imw{\textwidth}
+    \includegraphics[width=\imw]{figures/analysis-overview/flow}
+    \vfill
+    \includegraphics[width=\imw]{figures/analysis-overview/flow-diff}
+    \vfill
+    \includegraphics[width=\imw]{figures/analysis-overview/flow-int}
+
+    %   \begin{itemize}
+    
+    % \end{itemize}
+    %   \begin{tikzpicture}
+    %     \def\imw{0.5\textwidth}
+    %     \node[inner sep=1pt,above] at (0,0){
+
+    %   \end{tikzpicture}
+  \end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Segmentation \& volume analysis}
+  \begin{tikzpicture}[]
+    \def\xx{0.2\textwidth}
+    \def\imh{0.3\textheight}
+    \small
+    \node[inner sep=1pt,above] at (0,0){
+      \includegraphics[height=\imh]{figures/archenteron-inflation/arch-infl}};         
+    \node[inner sep=0pt,below] at (-0.63*\xx,0){Archenteron inflation};
+    \node[inner sep=0pt,below] at (1.33*\xx,0){Volume balancing};
+  \end{tikzpicture}
+  \vfill
+  \begin{tikzpicture}
+    \def\imh{0.3\textheight}
+    \def\xx{0.5\textwidth}
+    \small
+    % rotation
+    \node[inner sep=1pt,above] at (0,0){
+      \href{run:videos/archenteron-inflation/rend-cavities.avi?autostart&loop}{
+        \includegraphics[height=\imh]{videos/archenteron-inflation/rend-cavities}}};
+    \node[inner sep=1pt,below] at (0,0){Segmented cavities};
+    % inflation
+    \node[inner sep=1pt,above] at (\xx,0){
+      \href{run:videos/archenteron-inflation/infl-arch.avi?autostart&loop}{
+        \includegraphics[height=\imh]{videos/archenteron-inflation/infl-arch}}};
+    \node[inner sep=1pt,below] at (\xx,0){Inflating archenteron};
+  \end{tikzpicture}
+  \vfill
+  \begin{itemize}
+  \item Conclusion: Archenteron inflation is driven by uptake of
+    external water
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Optical flow}
+  \begin{itemize}
+  \item Visualising overall dynamics
+  \end{itemize}
+  \vfill
+  \begin{tikzpicture}[]
+    \def\imw{0.8\textwidth}
+    \def\xx{0.4\textwidth}
+    \def\yy{0.3\textheight}
+    \small
+    % rend
+    \node[] at (0,0){
+      \includegraphics[width=\imw]{figures/optical-flow/rend}};         
+    \node[align=right,anchor=east] at (-\xx,0){Rendering of\\ halved embryo};
+    % flow
+    \node[] at (0,-\yy){
+      \includegraphics[width=\imw]{figures/optical-flow/flow}};         
+    \node[align=right,anchor=east] at (-\xx,-\yy){Velocity field\\on central slab};
+  \end{tikzpicture}
+  \vfill
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Differential optical flow}
+  \begin{itemize}
+  \item Collective vs individual movement
+  \item Propulsion mechanisms
+  \end{itemize}
+  \vfill
+  \begin{tikzpicture}[]
+    \def\imh{0.4\textheight}
+    \def\xx{0.3\textheight}
+    \small
+    % flow
+    \node[inner sep=1pt,above] at (-\xx,0){
+      \includegraphics[height=\imh]{figures/optical-flow-diff/flow}};         
+    \node[inner sep=1pt,below,align=center] at (-\xx,0){Magnitude of \\flow field};
+    % diff flow
+    \node[inner sep=1pt,above] at (\xx,0){
+      \includegraphics[height=\imh]{figures/optical-flow-diff/diff-flow}};         
+    \node[inner sep=1pt,below,align=center] at (\xx,0){Magnitude of \\differential flow field};
+  \end{tikzpicture}
+  \vfill
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Integrated optical flow}
+  \begin{itemize}
+  \item Cell tracking via time integration
+  \end{itemize}
+  \vfill
+  \begin{tikzpicture}[]
+    \def\imh{0.4\textheight}
+    \small
+    \node[inner sep=1pt,above] at (0,0){
+      \includegraphics[height=\imh]{figures/optical-flow-int/cell-track}};         
+    \node[inner sep=2pt,below] at (0,0){Trajectories of cell pairs};
+  \end{tikzpicture}
+  \vfill
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{center}
+    \Large  Thank you for your attention!    
+  \end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Outlook}
+  \begin{itemize}
+  \item 4th generation synchrotron upgrades implementing multi-bend
+    achromat lattices: drastically enhanced coherence $\rightarrow$
+    enhanced contrast, allows larger $z$
+  \item Cone-beam magnification using Kirkpatrick Baez mirrors, ...
+  \item Optimising detector system: scintillator, microscope, camera,
+    blurring, deconvolution, point spread function, ...
+  \item Tomography: fast shutter, dose, noise, stepping vs on-the-fly,
+    alternative reconstruction techniques: algebraic, iterative,
+    neural networks, sparsity, dictionary learning, ...
+  \item Combination of X-ray phase-contrast \& confocal fluorescence
+    microscopy
+  \item Systematic dose studies: dose delay effects, use of radical
+    scavengers, find phenomenological function describing dose expression
+    effects, ...
+  \item Upcoming experiments: emigration \& delamination processes of
+    neural crest cells as a model for on-set of cancer metastasis
+  \item Perturbation experiments (wildtype vs morphant embyros): role
+    of adhesion molecules, signalling pathways, transcription factors,
+    gene regulatory networks, ...
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+\end{document}
+
+% test
